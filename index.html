@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 50px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Login Form</h2>
+        <form id="otpForm">
+            <label for="otp">Enter OTP:</label>
+            <!-- <label for="otp">your otp</label> -->
+            <input type="text" id="otp" name="otp" placeholder="Enter OTP here" required>
+            <input type="submit" value="Submit">
+            <p id="message" class="message"></p>
+        </form>
+    </div>
+
+    <script>
+        // Generate a 4-digit OTP
+        var generatedOTP = Math.ceil(1000 + Math.random() * 9000);
+        alert("Your OTP is: " + generatedOTP); // Display OTP in an alert
+
+        // Handle form submission
+        document.getElementById("otpForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Get the entered OTP from the form
+            var enteredOTP = document.getElementById("otp").value;
+
+            // Check if the entered OTP matches the generated one
+            if (enteredOTP == generatedOTP) {
+                document.getElementById("message").style.color = "green";
+                document.getElementById("message").innerText = "Login Successful👍✅.";
+            } else {
+                document.getElementById("message").innerText = "Incorrect OTP. Please try again🤷‍♀️.";
+                document.getElementById("message").style.color="red";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
